@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.clark.volley.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/StringRequest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="StringRequest"/>
+
+                <Button
+                    android:id="@+id/JsonRequest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="JsonRequest"/>
+
+                <Button
+                    android:id="@+id/ImageRequest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ImageRequest"/>
+
+                <Button
+                    android:id="@+id/XmlRequest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="XmlRequest"/>
+
+                <Button
+                    android:id="@+id/GsonRequest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GsonRequest"/>
+
+                <Button
+                    android:id="@+id/ImageLoader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ImageLoader"/>
+
+                <Button
+                    android:id="@+id/NetworkImageViewBt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="NetworkImageViewBt"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_below="@id/layout"
+                android:layout_centerInParent="true"/>
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/NetworkImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
