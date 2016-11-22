@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Application.iml" filepath="$PROJECT_DIR$/Application.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvpdemo/mvpdemo.iml" filepath="$PROJECT_DIR$/mvpdemo/mvpdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/recycletest/recycletest.iml" filepath="$PROJECT_DIR$/recycletest/recycletest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rrimageview/rrimageview.iml" filepath="$PROJECT_DIR$/rrimageview/rrimageview.iml" />
       <module fileurl="file://$PROJECT_DIR$/volleytest/volleytest.iml" filepath="$PROJECT_DIR$/volleytest/volleytest.iml" />
     </modules>
   </component>
