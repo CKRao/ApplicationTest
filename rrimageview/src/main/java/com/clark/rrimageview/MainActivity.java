@@ -1,13 +1,15 @@
 package com.clark.rrimageview;
 
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private RRImageview gado;
+    private BateImageview gado;
     private Button bt1, bt2, bt3, bt4, bt5, bt6, bt7;
 
     @Override
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void init() {
-        gado = (RRImageview) findViewById(R.id.gado);
+        gado = (BateImageview) findViewById(R.id.gado);
         bt1 = (Button) findViewById(R.id.bt1);
         bt2 = (Button) findViewById(R.id.bt2);
         bt3 = (Button) findViewById(R.id.bt3);
@@ -64,3 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 }
+
+
+
+

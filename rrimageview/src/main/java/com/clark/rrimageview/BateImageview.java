@@ -18,10 +18,10 @@ import android.util.TypedValue;
 import android.widget.ImageView;
 
 /**
- * Created by clark on 2016/11/22.
+ * Created by clark on 2016/11/23.
  */
 
-public class RRImageview extends ImageView {
+public class BateImageview extends ImageView {
     /**
      * 图片的类型，圆形or圆角
      */
@@ -63,16 +63,12 @@ public class RRImageview extends ImageView {
     private static final String STATE_TYPE = "state_type";
     private static final String STATE_BORDER_RADIUS = "state_border_radius";
 
-    public RRImageview(Context context) {
+    public BateImageview(Context context) {
         this(context, null);
     }
 
-    public RRImageview(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public RRImageview(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public BateImageview(Context context, AttributeSet attrs) {
+        super(context, attrs);
         mMatrix = new Matrix();
         mBitmapPaint = new Paint();
         mBitmapPaint.setAntiAlias(true);
@@ -80,10 +76,12 @@ public class RRImageview extends ImageView {
                 R.styleable.RRImageview);
 
         mBorderRadius = ta.getDimensionPixelSize(
-                R.styleable.RRImageview_borderRadius, (int) TypedValue
-                        .applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                                BODER_RADIUS_DEFAULT, getResources()
-                                        .getDisplayMetrics()));// 默认为10dp
+                R.styleable.RRImageview_borderRadius,
+                dp2px(BODER_RADIUS_DEFAULT));// 默认为10dp
+        // (int) TypedValue
+//        .applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+//                BODER_RADIUS_DEFAULT, getResources()
+//                        .getDisplayMetrics())
         type = ta.getInt(R.styleable.RRImageview_type, TYPE_CIRCLE);// 默认为Circle
         ta.recycle();
     }
@@ -109,6 +107,7 @@ public class RRImageview extends ImageView {
             mRoundRect = new RectF(0, 0, getWidth(), getHeight());
         }
     }
+
     @Override
     protected void onDraw(Canvas canvas) {
         if (getDrawable() == null) {
@@ -136,6 +135,12 @@ public class RRImageview extends ImageView {
         // 将bmp作为着色器，就是在指定区域内绘制bmp
         mBitmapShader = new BitmapShader(bmp, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
         float scale = 1.0f;
+        int viewwidth = getWidth();
+        int viewheight = getHeight();
+        int drawablewidth = bmp.getWidth();
+        int drawableheight = bmp.getHeight();
+        float dx = 0;
+        float dy = 0;
         if (type == TYPE_CIRCLE) {
             // 拿到bitmap宽或高的小值
             int bSize = Math.min(bmp.getWidth(), bmp.getHeight());
@@ -147,8 +152,14 @@ public class RRImageview extends ImageView {
             scale = Math.max(getHeight() * 1.0f / bmp.getHeight(),
                     getWidth() * 1.0f / bmp.getWidth());
         }
+        if (drawablewidth * viewheight > drawableheight * viewwidth) {
+            dx = (viewwidth - drawablewidth * scale) * 0.5f;
+        } else {
+            dy = (viewheight - drawableheight * scale) * 0.5f;
+        }
         // shader的变换矩阵，我们这里主要用于放大或者缩小
         mMatrix.setScale(scale, scale);
+        mMatrix.postTranslate(dx,dy);
         // 设置变换矩阵
         mBitmapShader.setLocalMatrix(mMatrix);
         // 设置shader
