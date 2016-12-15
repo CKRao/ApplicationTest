@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MVPDemo2</string>
+    <string name="kuaidi_company">快递公司名：</string>
+    <string name="search">快 递 单 号：</string>
+    <string name="bt_name">查询</string>
+
+</resources>
