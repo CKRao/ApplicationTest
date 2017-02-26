@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">DownloadTest</string>
+    <string name="file_name">FileName</string>
+    <string name="btStop">停止</string>
+    <string name="btStart">下载</string>
+</resources>

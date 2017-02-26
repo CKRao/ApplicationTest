@@ -1,1 +1,1 @@
-include ':recycletest', ':mvpdemo', ':volleytest', ':rrimageview', ':mvpdemo2'
+include ':recycletest', ':mvpdemo', ':volleytest', ':rrimageview', ':mvpdemo2', ':videotest', ':downloadtest'
