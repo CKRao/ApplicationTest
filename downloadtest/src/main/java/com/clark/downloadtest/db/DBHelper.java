@@ -14,8 +14,19 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE = "create table thread_info(_id integer primary key autoincrement ," +
             "thread_id integer,url text,start integer,end integer,finished integer)";
     private static final String SQL_DROP = "drop table if exists thread_info";
+    private static DBHelper dbHelper = null;//静态对象引用
 
-    public DBHelper(Context context) {
+    /**
+     * 获得类的对象
+     */
+    public static DBHelper getInstance(Context context) {
+        if (dbHelper == null) {
+            dbHelper = new DBHelper(context);
+        }
+        return dbHelper;
+    }
+
+    private DBHelper(Context context) {
         super(context, DB_NAME, null, VERSION);
     }
 

@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by clark on 2017/2/26.
@@ -30,8 +33,10 @@ public class DownloadService extends Service {
     public static final String ACTION_START = "ACTION_START";
     public static final String ACTION_STOP = "ACTION_STOP";
     public static final String ACTION_UPDATE = "ACTION_UPDATE";
+    public static final String ACTION_FINISHED = "ACTION_FINISHED";
     public static final int MSG_INIT = 0;
-    private DownloadTask mTask;
+    //下载任务的集合
+    private Map<Integer, DownloadTask> mTasks = new LinkedHashMap<>();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -40,12 +45,15 @@ public class DownloadService extends Service {
             FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
 //            Log.i("test", "Start:" + fileInfo.toString());
             //启动初始化线程
-            new InitThread(fileInfo).start();
+                new InitThread(fileInfo).start();
         } else if (ACTION_STOP.equals(intent.getAction())) {
+            //暂停下载
             FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
-            Log.i("test", "Stop:" + fileInfo.toString());
-            if (mTask != null) {
-                mTask.isPause = true;
+            DownloadTask task = mTasks.get(fileInfo.getId());
+            //从集合中取出下载任务
+            if (task != null) {
+                //停止下载任务
+                task.isPause = true;
             }
         }
         return super.onStartCommand(intent, flags, startId);
@@ -58,7 +66,6 @@ public class DownloadService extends Service {
     }
 
 
-
     /**
      * 初始化子线程
      */
@@ -68,6 +75,7 @@ public class DownloadService extends Service {
         public InitThread(FileInfo fileInfo) {
             mFileInfo = fileInfo;
         }
+
         Handler mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -76,8 +84,10 @@ public class DownloadService extends Service {
                         FileInfo fileInfo = (FileInfo) msg.obj;
                         Log.i("test", "Init:" + fileInfo);
                         //启动下载任务
-                        mTask = new DownloadTask(DownloadService.this, fileInfo);
-                        mTask.Download();
+                        DownloadTask task = new DownloadTask(DownloadService.this, fileInfo, 3);
+                        task.Download();
+                        //把下载任务添加到集合中
+                        mTasks.put(fileInfo.getId(), task);
                         break;
                 }
             }

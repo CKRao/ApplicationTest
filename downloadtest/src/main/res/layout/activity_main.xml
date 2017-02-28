@@ -11,34 +11,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.clark.downloadtest.MainActivity">
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"/>
-
-    <ProgressBar
-        android:id="@+id/pbProgress"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+    <ListView
+        android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv"/>
-
-    <Button
-        android:id="@+id/btStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/pbProgress"
-        android:text="@string/btStop"
-        />
-
-    <Button
-        android:id="@+id/btStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pbProgress"
-        android:layout_toLeftOf="@id/btStop"
-        android:text="@string/btStart"
+        android:layout_height="match_parent"
         />
 </RelativeLayout>
